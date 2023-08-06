@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+  web:
+    build: ./
+    container_name: web
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www/html
+
+  db:
+    image: mysql
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Palm@#056
+      MYSQL_DATABASE: contact
+      MYSQL_USER: apinp
+      MYSQL_PASSWORD: Palm@#056
+    volumes:
+      - db_data:/var/lib/mysql
+  
+volumes:
+  db_data:
